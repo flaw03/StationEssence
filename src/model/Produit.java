@@ -2,10 +2,12 @@ package model;
 
 public class Produit {
 
+    String nom;
     int stock;
     int prix;
 
-    public Produit(int stock, int prix) {
+    public Produit(String nom ,int stock, int prix) {
+        this.nom = nom;
         this.stock = stock;
         this.prix = prix;
     }
@@ -35,5 +37,13 @@ public class Produit {
             throw new IllegalArgumentException("Prix negatif");
         }
         this.prix = prix;
+    }
+
+    public int calculerPrix(int quantiiteProduit) {
+        return prix * quantiiteProduit;
+    }
+
+    public String getNom() {
+        return nom;
     }
 }
