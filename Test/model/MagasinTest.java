@@ -1,5 +1,7 @@
 package model;
 
+import model.produit.Lubrifiant;
+import model.produit.Magasin;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

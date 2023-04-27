@@ -11,7 +11,7 @@ class CalendrierStockTest {
 
     @BeforeEach
     void init(){
-        calendrierStock = new CalendrierStock(2,27,"Chaise");
+        calendrierStock = new CalendrierStock(27,2,"Chaise");
     }
 
     @Test
@@ -20,7 +20,7 @@ class CalendrierStockTest {
         assertEquals(calendrierStock.getDate(),"28 Février");
         calendrierStock.jourSuivant(10,3,0,4,4,2);
         assertEquals(calendrierStock.getDate(),"1 Mars");
-        calendrierStock = new CalendrierStock(12,30,"Chaise");
+        calendrierStock = new CalendrierStock(30,12,"Chaise");
         assertEquals(calendrierStock.getDate(),"30 Décembre");
         calendrierStock.jourSuivant(10,3,0,4,4,2);
         assertEquals(calendrierStock.getDate(),"31 Décembre");
@@ -30,7 +30,7 @@ class CalendrierStockTest {
     @Test
     void init_info_stock() {
         calendrierStock.jourSuivant(15,20,5,0,15,225);
-        assertEquals(calendrierStock.obtenirInfoStock(2,27).toString(), """
+        assertEquals(calendrierStock.obtenirInfoStock(27,2).toString(), """
                 Stock de Chaise du 27 Février
                 prix : 15
                 stock initial : 20
@@ -40,7 +40,7 @@ class CalendrierStockTest {
                 prix Total : 225
                 """);
         calendrierStock.jourSuivant(1,3,2,0,4,4);
-        assertEquals(calendrierStock.obtenirInfoStock(2,28).toString(), """
+        assertEquals(calendrierStock.obtenirInfoStock(28,2).toString(), """
                 Stock de Chaise du 28 Février
                 prix : 4
                 stock initial : 3
@@ -50,7 +50,7 @@ class CalendrierStockTest {
                 prix Total : 4
                 """);
         calendrierStock.jourSuivant(0,3,13,10,10,0);
-        assertEquals(calendrierStock.obtenirInfoStock(3,1).toString(), """
+        assertEquals(calendrierStock.obtenirInfoStock(1,3).toString(), """
                 Stock de Chaise du 1 Mars
                 prix : 10
                 stock initial : 3
@@ -62,13 +62,16 @@ class CalendrierStockTest {
 
 
         assertThrows(ArrayIndexOutOfBoundsException.class,
-                ()->{
-                    calendrierStock.obtenirInfoStock(2,29);});
+                ()-> calendrierStock.obtenirInfoStock(2,29));
+        assertThrows(ArrayIndexOutOfBoundsException.class,
+                ()-> calendrierStock.obtenirInfoStock(0,29));
+        assertThrows(ArrayIndexOutOfBoundsException.class,
+                ()-> calendrierStock.obtenirInfoStock(2,0));
+
         assertThrows(IllegalArgumentException.class,
-                ()->{
-                    calendrierStock.obtenirInfoStock(3,2);});assertThrows(IllegalArgumentException.class,
-                ()->{
-                    calendrierStock.obtenirInfoStock(3,4);});
+                ()-> calendrierStock.obtenirInfoStock(2,3));
+        assertThrows(IllegalArgumentException.class,
+                ()-> calendrierStock.obtenirInfoStock(3,4));
 
     }
 }

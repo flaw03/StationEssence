@@ -1,8 +1,10 @@
-package model;
+package model.produit;
+
+import model.produit.Lubrifiant;
 
 public class Magasin {
 
-    private final Lubrifiant [] lubrifiants ;
+    private final Lubrifiant[] lubrifiants ;
     private int nbLubrifiant = 0;
 
     public Magasin(int nbrLubrifiantMax) {
