@@ -1,7 +1,7 @@
 package model;
 
 import model.produit.Lubrifiant;
-import model.produit.Magasin;
+import model.etablisement.Magasin;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -40,8 +40,8 @@ class MagasinTest {
 
     @Test
     void produit_disponible(){
-        assertEquals(magasin.produitDisponible("Lubrifiant 1"),0);
-        assertEquals(magasin.produitDisponible("Lubrifiant 4"),-1);
+        assertEquals(magasin.trouverProduit("Lubrifiant 1"),0);
+        assertEquals(magasin.trouverProduit("Lubrifiant 4"),-1);
     }
 
 }

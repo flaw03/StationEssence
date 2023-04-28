@@ -1,12 +1,10 @@
-package model.calendrier;
+package model.transaction;
 
-import model.transaction.Transaction;
-
-public class InfoTransaction {
+public class CarnetTransaction {
     private Transaction[] transactions;
     private int nbrTransacation;
 
-    public InfoTransaction() {
+    public CarnetTransaction() {
         transactions = new Transaction[20];
         nbrTransacation = 0;
     }
@@ -34,13 +32,13 @@ public class InfoTransaction {
         return null;
     }
 
-    public InfoTransaction getInfoTransactionClient(String nomClient) {
-        InfoTransaction infoTransactionClient = new InfoTransaction();
+    public CarnetTransaction getInfoTransactionClient(String nomClient) {
+        CarnetTransaction carnetTransactionClient = new CarnetTransaction();
         for (int i = 0; i<nbrTransacation ; i++){
             if (transactions[i].getNonClient().equals(nomClient)) {
-                infoTransactionClient.ajouterTransation(transactions[i]);
+                carnetTransactionClient.ajouterTransation(transactions[i]);
             }
         }
-        return infoTransactionClient;
+        return carnetTransactionClient;
     }
 }

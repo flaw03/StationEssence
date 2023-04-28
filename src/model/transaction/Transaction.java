@@ -18,6 +18,10 @@ public class Transaction {
         this.nonClient = nonClient;
     }
 
+    public static void setNbrTransation(int nbrTransation) {
+        Transaction.nbrTransation = nbrTransation;
+    }
+
     public int getPrix() {
         return prix;
     }

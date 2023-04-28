@@ -2,14 +2,13 @@ package model.produit;
 
 import model.calendrier.CalendrierStock;
 import model.calendrier.CalendrierTransaction;
-import model.calendrier.InfoStock;
 import model.transaction.Transaction;
 
 public class Produit {
 
     private final String nom;
     private int stock;
-    private int  reapro = 0;
+    private int reapro = 0;
     private int stockInitial;
     private int nbrvente = 0;
     private int prix;
@@ -25,8 +24,8 @@ public class Produit {
         this.stockInitial = stock;
         this.prix = prix;
         this.nouveauxPrix = prix;
-        calendrierStock = new CalendrierStock(1,1, nom);
-        calendrierTransaction = new CalendrierTransaction(1, 1);
+        calendrierStock = new CalendrierStock(nom);
+        calendrierTransaction = new CalendrierTransaction();
     }
 
     public int getStock() {
@@ -55,8 +54,13 @@ public class Produit {
         return transaction;
     }
 
+
     public int getPrix() {
         return prix;
+    }
+
+    public boolean disponible(){
+        return stock > 0;
     }
 
 
@@ -78,7 +82,6 @@ public class Produit {
 
     public void changerDate() {
         calendrierStock.jourSuivant(nbrvente,stockInitial,stock,reapro,prix,calculerPrix(nbrvente));
-        calendrierTransaction.jourSuivant();
         stockInitial = stock;
         reapro = 0;
         nbrvente = 0;

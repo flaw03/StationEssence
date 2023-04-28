@@ -4,8 +4,7 @@ public class CalendrierStock extends Calendrier {
 
     private final MoisStock[] moisStocks;
 
-    public CalendrierStock(int jour, int mois, String nomProduit) throws IllegalArgumentException{
-        super(jour, mois);
+    public CalendrierStock (String nomProduit) {
         moisStocks = new MoisStock[12];
         for (int i = 0; i < 12; i++) {
             moisStocks[i] = new MoisStock(nomMois[i], jourMois[i], nomProduit);
@@ -15,13 +14,7 @@ public class CalendrierStock extends Calendrier {
 //    @Override
     public void jourSuivant(int nbrVente, int stockInitial, int stockFinal, int reaProvisionnement, int prix, int prixTotal) {
         moisStocks[mois].getInfoStock(jour).init(nbrVente,stockInitial,stockFinal,reaProvisionnement,prix,prixTotal);
-        if (jour + 1 >= jourMois[mois] ){
-            mois = (mois + 1 )% 12;
-            jour = 0;
-        }
-        else{
-            jour ++;
-        }
+        jourSuivant();
     }
 
     public InfoStock obtenirInfoStock(int jourDemander, int moisDemander) throws IllegalArgumentException , ArrayIndexOutOfBoundsException{
@@ -31,7 +24,7 @@ public class CalendrierStock extends Calendrier {
              moisDemander >= 12 || jourDemander >= jourMois[moisDemander]  ) {
                 throw new ArrayIndexOutOfBoundsException("Date hos du tableau ");
         }
-        else if (this.mois<= moisDemander && this.jour <= jourDemander){
+        else if (Calendrier.mois<= moisDemander && Calendrier.jour <= jourDemander){
             throw new IllegalArgumentException("Pas d'information disponible");
         }
         return moisStocks[moisDemander].getInfoStock(jourDemander);

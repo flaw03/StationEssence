@@ -1,4 +1,4 @@
-package model.produit;
+package model.etablisement;
 
 import model.produit.Lubrifiant;
 
@@ -13,7 +13,6 @@ public class Magasin {
 
     public void ajouterLubrifiant(Lubrifiant lubrifiant) throws ArrayIndexOutOfBoundsException{
         if (lubrifiants.length <= nbLubrifiant){
-            System.out.print("feur\n");
             throw new ArrayIndexOutOfBoundsException("Le magasin est rempli");
         }
         else {
@@ -24,7 +23,14 @@ public class Magasin {
 
     }
 
-    public int produitDisponible(String nomProduit) {
+    public void jourSuivant(){
+        for (int i = 0; i < nbLubrifiant; i++) {
+            lubrifiants[i].changerDate();
+        }
+    }
+
+
+    public int trouverProduit(String nomProduit) {
         for(int i = 0; i < nbLubrifiant;i++){
             if(lubrifiants[i].getNom().equals(nomProduit)){
                 return i;
@@ -32,5 +38,16 @@ public class Magasin {
         }
         return -1;
     }
+
+    public String listerLubrifiantDisponible (){
+        StringBuilder chaine = new StringBuilder("Produit disponilbe :\n");
+        for(int i = 0 ; i<nbLubrifiant ; i++){
+            if(lubrifiants[i].disponible()){
+                chaine.append(lubrifiants[i].toString()).append("\n");
+            }
+        }
+        return chaine.toString();
+    }
+
 
 }

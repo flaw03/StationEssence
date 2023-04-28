@@ -2,21 +2,25 @@ package model.calendrier;
 
 public class MoisStock {
     private final String noms;
-    private final InfoStock[] infoStock;
+    private final InfoStock[] infoStocks;
 
     public MoisStock(String noms ,int nbJour ,String nomProduit) {
         this.noms = noms;
-        infoStock = new InfoStock[nbJour];
+        infoStocks = new InfoStock[nbJour];
         for (int i = 0; i < nbJour ; i++){
-            infoStock[i] = new InfoStock(this.noms , i+1 ,nomProduit);
+            infoStocks[i] = new InfoStock(this.noms , i+1 ,nomProduit);
         }
     }
 
+    public String getNoms() {
+        return noms;
+    }
+
     public InfoStock getInfoStock(int jour)throws ArrayIndexOutOfBoundsException{
-        if (jour >= infoStock.length){
+        if (jour >= infoStocks.length){
             throw new ArrayIndexOutOfBoundsException("jour hors du tableau");
         }
-        return infoStock[jour];
+        return infoStocks[jour];
     }
 
 

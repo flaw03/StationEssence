@@ -2,8 +2,8 @@ package model.calendrier;
 
 public class InfoStock {
 
-    private String mois;
-    private int jour;
+    private final String mois;
+    private final int jour;
     private int nbrVente;
     private int stockInitial;
     private int stockFinal;
@@ -11,7 +11,7 @@ public class InfoStock {
     private int prix;
     private int prixTotal;
 
-    private String nom;
+    private final String nom;
 
     public InfoStock(String mois , int jour , String nom) {
         this.nom = nom;

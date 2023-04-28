@@ -1,6 +1,6 @@
 package model.produit;
 
-import model.produit.Produit;
+import model.calendrier.Calendrier;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,6 +13,7 @@ class ProduitTest {
     @BeforeEach
     void setUp() {
         produit = new Produit("produit Miracle",5,10);
+        Calendrier.setDate(1,1);
     }
 
     @Test
@@ -22,7 +23,7 @@ class ProduitTest {
         assertEquals(produit.getStock(),10);
         produit.perteStock(7);
         assertEquals(produit.getStock(),3);
-        assertThrows(IllegalArgumentException.class,()->{produit.perteStock(5);});
+        assertThrows(IllegalArgumentException.class,()-> produit.perteStock(5));
     }
 
 
@@ -39,8 +40,7 @@ class ProduitTest {
     @Test
     void perteStock(){
         assertThrows(IllegalArgumentException.class,
-                ()->{
-                    produit.perteStock(10);});
+                ()-> produit.perteStock(10));
 
         produit.perteStock(3);
         assertEquals(produit.getStock(),2);
@@ -54,7 +54,7 @@ class ProduitTest {
     void changer_prix_test(){
 
 
-        assertThrows(IllegalArgumentException.class,()->{produit.setPrix(-5);});
+        assertThrows(IllegalArgumentException.class,()-> produit.setPrix(-5));
 
         produit.setPrix(20);
         assertEquals(produit.getPrix(),10);

@@ -11,7 +11,8 @@ class CalendrierStockTest {
 
     @BeforeEach
     void init(){
-        calendrierStock = new CalendrierStock(27,2,"Chaise");
+        calendrierStock = new CalendrierStock("Chaise");
+        Calendrier.setDate(27, 2);
     }
 
     @Test
@@ -20,7 +21,7 @@ class CalendrierStockTest {
         assertEquals(calendrierStock.getDate(),"28 Février");
         calendrierStock.jourSuivant(10,3,0,4,4,2);
         assertEquals(calendrierStock.getDate(),"1 Mars");
-        calendrierStock = new CalendrierStock(30,12,"Chaise");
+        Calendrier.setDate(30,12);
         assertEquals(calendrierStock.getDate(),"30 Décembre");
         calendrierStock.jourSuivant(10,3,0,4,4,2);
         assertEquals(calendrierStock.getDate(),"31 Décembre");
